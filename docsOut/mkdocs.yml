@@ -1,20 +1,20 @@
 - Mods:
     - Some_generic_addon:
-      - MyStaticIntegrationClass: 'mods/some_generic_addon/MyStaticIntegrationClass.md'
+        - MyStaticIntegrationClass: 'mods/some_generic_addon/MyStaticIntegrationClass.md'
 
 - Vanilla:
     - Api:
-      - Brackets:
-        - CommandStringDisplayable: 'vanilla/api/brackets/CommandStringDisplayable.md'
-      - Data:
-        - IData: 'vanilla/api/data/IData.md'
-        - MapData: 'vanilla/api/data/MapData.md'
-      - Food:
-        - MCFood: 'vanilla/api/food/MCFood.md'
-      - Items:
-        - IIngredient: 'vanilla/api/items/IIngredient.md'
-        - IItemStack: 'vanilla/api/items/IItemStack.md'
-      - Potions:
-        - MCPotionEffect: 'vanilla/api/potions/MCPotionEffect.md'
-        - MCPotionEffectInstance: 'vanilla/api/potions/MCPotionEffectInstance.md'
+        - Brackets:
+            - CommandStringDisplayable: 'vanilla/api/brackets/CommandStringDisplayable.md'
+        - Data:
+            - IData: 'vanilla/api/data/IData.md'
+            - MapData: 'vanilla/api/data/MapData.md'
+        - Food:
+            - MCFood: 'vanilla/api/food/MCFood.md'
+        - Items:
+            - IIngredient: 'vanilla/api/items/IIngredient.md'
+            - IItemStack: 'vanilla/api/items/IItemStack.md'
+        - Potions:
+            - MCPotionEffect: 'vanilla/api/potions/MCPotionEffect.md'
+            - MCPotionEffectInstance: 'vanilla/api/potions/MCPotionEffectInstance.md'
 

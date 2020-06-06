@@ -119,3 +119,9 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.15.2-31.1.18'
     compile fg.deobf("mezz.jei:jei-1.15.2:6.0.0.2")
 }
+
+idea {
+    module {
+        excludeDirs += [file("docsOut"), file("run")]
+    }
+}
