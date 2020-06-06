@@ -1,0 +1,121 @@
+buildscript {
+    repositories {
+        maven {
+            url = 'https://files.minecraftforge.net/maven'
+        }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+    }
+}
+plugins {
+    id "com.matthewprenger.cursegradle" version "1.4.0"
+}
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'maven-publish'
+
+apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Collection/22e7d543a18cd30675277fbfa3669e3d9e206010/generic/secrets.gradle'
+
+group = 'com.blamejared.generic_addon'
+archivesBaseName = 'Generic Addon-1.15.2'
+
+if (project.hasProperty('secretFile')) {
+    loadSecrets(new File((String) findProperty('secretFile')))
+}
+
+version = '6.0.0'
+if (System.getenv('BUILD_NUMBER') != null) {
+    version += "." + System.getenv('BUILD_NUMBER')
+}
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+
+//Shuts up javadoc failures
+if (JavaVersion.current().isJava8Compatible()) {
+
+    allprojects {
+
+        tasks.withType(Javadoc) {
+            options.tags += "docParam"
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+minecraft {
+    mappings channel: 'snapshot', version: '20200227-1.15.1'
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            mods {
+                generic_addon {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+
+            mods {
+                generic_addon {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/')
+
+            mods {
+                generic_addon {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+repositories {
+    maven {
+        url "https://dvs1.progwml6.com/files/maven"
+    }
+
+    maven {
+    	url "https://maven.blamejared.com"
+    }
+}
+
+dependencies {
+
+    annotationProcessor files('libs/Crafttweaker_Annotations-0.3.8.jar')
+    annotationProcessor group: "com.blamejared.crafttweaker", name: "Crafttweaker_Annotation_Processors-1.15.2", version: "1.0.0.29"
+    annotationProcessor group: 'org.reflections', name: 'reflections', version: '0.9.10'
+    annotationProcessor group: "com.blamejared.crafttweaker", name: "CraftTweaker-1.15.2", version: "6.0.0.29"
+
+    compile group: "com.blamejared.crafttweaker", name: "CraftTweaker-1.15.2", version: "6.0.0.29"
+    compile files('libs/Crafttweaker_Annotations-0.3.8.jar')
+
+    minecraft 'net.minecraftforge:forge:1.15.2-31.1.18'
+    compile fg.deobf("mezz.jei:jei-1.15.2:6.0.0.2")
+}

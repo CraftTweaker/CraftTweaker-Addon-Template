@@ -1,0 +1,21 @@
+modLoader="javafml"
+loaderVersion="[31,)"
+[[mods]]
+modId="some_generic_addon"
+version="${file.jarVersion}"
+displayName="Some Generic CrT Addon"
+logoFile="logo.png"
+authors="Jaredlll08, Kindlich and StanH"
+description="Let people know how to customize their minecraft experience!"
+[[dependencies.some_generic_addon]]
+    modId="forge"
+    mandatory=true
+    versionRange="[31,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.some_generic_addon]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.15.2]"
+    ordering="NONE"
+    side="BOTH"
