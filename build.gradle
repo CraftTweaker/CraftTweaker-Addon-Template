@@ -42,6 +42,8 @@ if (JavaVersion.current().isJava8Compatible()) {
     allprojects {
 
         tasks.withType(Javadoc) {
+            //docParam is used by the Documentation Annotation Processor
+            // to create markdown files
             options.tags += "docParam"
             options.addStringOption('Xdoclint:none', '-quiet')
         }
@@ -107,21 +109,46 @@ repositories {
 }
 
 dependencies {
-
-    annotationProcessor files('libs/Crafttweaker_Annotations-0.3.8.jar')
-    annotationProcessor group: "com.blamejared.crafttweaker", name: "Crafttweaker_Annotation_Processors-1.15.2", version: "1.0.0.29"
-    annotationProcessor group: 'org.reflections', name: 'reflections', version: '0.9.10'
-    annotationProcessor group: "com.blamejared.crafttweaker", name: "CraftTweaker-1.15.2", version: "6.0.0.29"
-
-    compile group: "com.blamejared.crafttweaker", name: "CraftTweaker-1.15.2", version: "6.0.0.29"
-    compile files('libs/Crafttweaker_Annotations-0.3.8.jar')
-
     minecraft 'net.minecraftforge:forge:1.15.2-31.1.18'
+
+    // #################################################
+    // #### CraftTweaker Annotation Processor Start ####
+    // #################################################
+
+    //The actual annotation processor artifact. Also contains the annotations the processors process.
+    annotationProcessor group: "com.blamejared.crafttweaker", name: "Crafttweaker_Annotation_Processors-1.15.2", version: "1.0.0.40"
+    //The reflections library is needed for some type lookups
+    annotationProcessor group: 'org.reflections', name: 'reflections', version: '0.9.10'
+
+    // We'll also need the annotations at the compile time to be able use them
+    compile group: "com.blamejared.crafttweaker", name: "Crafttweaker_Annotation_Processors-1.15.2", version: "1.0.0.40"
+
+    // We'll only need this if you use the @AsIAction annotation
+    // This allows the AsIAction Processor to read the ZenWrappers inside CrT and therefore create conversions on your api methods for them
+    // If you depend on other mods that use @ZenWrapper, you need them here as well.
+    // Also, make sure to use the same version as in your compile dependency below, so maybe make it a variable or something
+    annotationProcessor group: "com.blamejared.crafttweaker", name: "CraftTweaker-1.15.2", version: "6.0.0.40"
+
+
+    // ####################################
+    // #### Compile Dependencies Start ####
+    // ####################################
+
+    compile group: "com.blamejared.crafttweaker", name: "CraftTweaker-1.15.2", version: "6.0.0.40"
     compile fg.deobf("mezz.jei:jei-1.15.2:6.0.0.2")
+}
+
+
+sourceSets {
+    main {
+        //Will be used by the Wrapper creator TODO: This project currently has no example for them.
+        java.srcDirs += "/src/generated/java/"
+    }
 }
 
 idea {
     module {
         excludeDirs += [file("docsOut"), file("run")]
+        generatedSourceDirs += file("src/generated/java")
     }
 }
