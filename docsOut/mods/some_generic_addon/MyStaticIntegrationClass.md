@@ -22,7 +22,7 @@ mods.some_generic_addon.MyStaticIntegrationClass.doPrint(<item:minecraft:iron_in
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| ingredient | [crafttweaker.api.item.IIngredient](/vanilla/api/items/IIngredient) | No description provided |
+| ingredient | [crafttweaker.api.item.IIngredient](/vanilla/api/items/IIngredient) | The ingredient to be printed |
 
 
 

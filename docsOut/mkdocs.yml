@@ -1,20 +1,34 @@
+- Mods\my\super\Registry:
+    - Registry: 'mods\my\super\Registry.md'
+
 - Mods:
     - Some_generic_addon:
-        - MyStaticIntegrationClass: 'mods/some_generic_addon/MyStaticIntegrationClass.md'
+      - MyStaticIntegrationClass: 'mods/some_generic_addon/MyStaticIntegrationClass.md'
 
 - Vanilla:
     - Api:
-        - Brackets:
-            - CommandStringDisplayable: 'vanilla/api/brackets/CommandStringDisplayable.md'
-        - Data:
-            - IData: 'vanilla/api/data/IData.md'
-            - MapData: 'vanilla/api/data/MapData.md'
-        - Food:
-            - MCFood: 'vanilla/api/food/MCFood.md'
-        - Items:
-            - IIngredient: 'vanilla/api/items/IIngredient.md'
-            - IItemStack: 'vanilla/api/items/IItemStack.md'
-        - Potions:
-            - MCPotionEffect: 'vanilla/api/potions/MCPotionEffect.md'
-            - MCPotionEffectInstance: 'vanilla/api/potions/MCPotionEffectInstance.md'
+      - Brackets:
+        - CommandStringDisplayable: 'vanilla/api/brackets/CommandStringDisplayable.md'
+      - Data:
+        - IData: 'vanilla/api/data/IData.md'
+        - MapData: 'vanilla/api/data/MapData.md'
+      - Food:
+        - MCFood: 'vanilla/api/food/MCFood.md'
+      - Items:
+        - IIngredient: 'vanilla/api/items/IIngredient.md'
+        - IIngredientTransformer: 'vanilla/api/items/IIngredientTransformer.md'
+        - IItemStack: 'vanilla/api/items/IItemStack.md'
+        - MCIngredientConditioned: 'vanilla/api/items/MCIngredientConditioned.md'
+      - Potions:
+        - MCPotionEffect: 'vanilla/api/potions/MCPotionEffect.md'
+        - MCPotionEffectInstance: 'vanilla/api/potions/MCPotionEffectInstance.md'
+      - Util:
+        - Text:
+          - MCTextComponent: 'vanilla/api/util/text/MCTextComponent.md'
+
+- Crafttweaker:
+    - Api:
+      - Item:
+        - Tooltip:
+          - ITooltipFunction: 'crafttweaker/api/item/tooltip/ITooltipFunction.md'
 
