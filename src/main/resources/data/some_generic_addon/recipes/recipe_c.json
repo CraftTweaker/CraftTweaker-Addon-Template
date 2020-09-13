@@ -1,0 +1,9 @@
+{
+  "type": "some_generic_addon:infusion",
+  "result": {
+    "item": "minecraft:iron_axe"
+  },
+  "input": {
+    "item": "minecraft:redstone"
+  }
+}

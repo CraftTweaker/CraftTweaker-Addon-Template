@@ -1,0 +1,9 @@
+{
+  "type": "some_generic_addon:infusion",
+  "result": {
+    "item": "minecraft:redstone"
+  },
+  "input": {
+    "item": "minecraft:bedrock"
+  }
+}

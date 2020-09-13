@@ -3,6 +3,7 @@
 
 - Mods:
     - Some_generic_addon:
+      - InfusionRecipeManager: 'mods/some_generic_addon/InfusionRecipeManager.md'
       - MyStaticIntegrationClass: 'mods/some_generic_addon/MyStaticIntegrationClass.md'
 
 - Vanilla:
@@ -19,10 +20,15 @@
         - IIngredientTransformer: 'vanilla/api/items/IIngredientTransformer.md'
         - IItemStack: 'vanilla/api/items/IItemStack.md'
         - MCIngredientConditioned: 'vanilla/api/items/MCIngredientConditioned.md'
+      - Managers:
+        - IRecipeManager: 'vanilla/api/managers/IRecipeManager.md'
       - Potions:
         - MCPotionEffect: 'vanilla/api/potions/MCPotionEffect.md'
         - MCPotionEffectInstance: 'vanilla/api/potions/MCPotionEffectInstance.md'
+      - Recipe:
+        - RecipeFilter: 'vanilla/api/recipe/RecipeFilter.md'
       - Util:
+        - MCResourceLocation: 'vanilla/api/util/MCResourceLocation.md'
         - Text:
           - MCTextComponent: 'vanilla/api/util/text/MCTextComponent.md'
 
@@ -31,4 +37,6 @@
       - Item:
         - Tooltip:
           - ITooltipFunction: 'crafttweaker/api/item/tooltip/ITooltipFunction.md'
+      - Recipes:
+        - WrapperRecipe: 'crafttweaker/api/recipes/WrapperRecipe.md'
 

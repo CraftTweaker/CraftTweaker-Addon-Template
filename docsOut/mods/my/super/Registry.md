@@ -33,7 +33,7 @@ mods.my.super.Registry.addASuperRecipe(<item:minecraft:bedrock>, <item:minecraft
 As you can see, you can use Strings.
  Generally you can use Strings, primitives or even lists/arrays of them
 
- Though I have to admit Lists/Arrays haven't been tested that well, so be careful on the generated code.
+ Though I have to admit Lists/Arrays haven't been tested that well, so be careful with the generated code.
 
 ```zenscript
 mods.my.super.Registry.removeABadRecipe(name as String);
