@@ -77,8 +77,9 @@ public class InfusionRecipeManager implements IRecipeManager {
      */
     @ZenCodeType.Method
     public void addRecipe(String name, IIngredient input, IItemStack output) {
-        //Generally, we recommend using your mod's namespace for any added recipe.
+        //Generally, we don't recommend using your mod's namespace for any added recipe.
         //This is so that in modpacks faulty recipes won't be reported to the mod authors.
+        //You could use CraftTweaker's namespace instead
         final ResourceLocation id = new ResourceLocation(SomeGenericAddon.MOD_ID, name);
         
         //Most CrT types have a "getInternal" method to get a CrT equivalent
