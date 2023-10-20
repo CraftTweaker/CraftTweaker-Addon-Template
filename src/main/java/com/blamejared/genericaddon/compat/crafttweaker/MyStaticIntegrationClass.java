@@ -1,17 +1,17 @@
-package com.blamejared.some_generic_addon.compat.crafttweaker;
+package com.blamejared.genericaddon.compat.crafttweaker;
 
 import com.blamejared.crafttweaker.api.*;
-import com.blamejared.crafttweaker.api.annotations.*;
-import com.blamejared.crafttweaker.api.item.*;
+import com.blamejared.crafttweaker.api.annotation.ZenRegister;
+import com.blamejared.crafttweaker.api.ingredient.IIngredient;
 import com.blamejared.crafttweaker_annotations.annotations.*;
 import org.openzen.zencode.java.*;
 
 /**
  * A class with static members that allow us to do stuff!
  */
+@ZenCodeType.Name("mods.genericaddon.MyStaticIntegrationClass")
+@Document("mods/genericaddon/MyStaticIntegrationClass")
 @ZenRegister
-@ZenCodeType.Name("mods.some_generic_addon.MyStaticIntegrationClass")
-@Document("mods/some_generic_addon/MyStaticIntegrationClass")
 public class MyStaticIntegrationClass {
     
     /**
@@ -22,6 +22,7 @@ public class MyStaticIntegrationClass {
      */
     @ZenCodeType.Method
     public static void doPrint(IIngredient ingredient) {
-        CraftTweakerAPI.logInfo("Printing '%s'", ingredient.getCommandString());
+        //While this has some usage, if what you're doing should be undoable, do refer to the IActionExample in InfusionRecipeManager.
+        CraftTweakerAPI.getLogger("GenericAddon").info("Printing '%s'", ingredient.getCommandString());
     }
 }

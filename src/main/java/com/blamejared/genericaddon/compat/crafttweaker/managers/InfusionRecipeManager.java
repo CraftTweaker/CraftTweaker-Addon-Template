@@ -1,22 +1,26 @@
-package com.blamejared.some_generic_addon.compat.crafttweaker.managers;
+package com.blamejared.genericaddon.compat.crafttweaker.managers;
 
-import com.blamejared.crafttweaker.api.*;
-import com.blamejared.crafttweaker.api.annotations.*;
-import com.blamejared.crafttweaker.api.item.*;
-import com.blamejared.crafttweaker.api.managers.*;
-import com.blamejared.crafttweaker.impl.actions.recipes.*;
-import com.blamejared.crafttweaker_annotations.annotations.*;
-import com.blamejared.some_generic_addon.*;
-import com.blamejared.some_generic_addon.recipes.*;
-import mcp.*;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.*;
-import net.minecraft.util.*;
+
+import com.blamejared.crafttweaker.CraftTweakerCommon;
+import com.blamejared.crafttweaker.api.CraftTweakerAPI;
+import com.blamejared.crafttweaker.api.CraftTweakerConstants;
+import com.blamejared.crafttweaker.api.action.recipe.ActionAddRecipe;
+import com.blamejared.crafttweaker.api.annotation.ZenRegister;
+import com.blamejared.crafttweaker.api.ingredient.IIngredient;
+import com.blamejared.crafttweaker.api.item.IItemStack;
+import com.blamejared.crafttweaker.api.recipe.manager.base.IRecipeManager;
+import com.blamejared.crafttweaker_annotations.annotations.Document;
+import com.blamejared.genericaddon.SomeGenericAddon;
+import com.blamejared.genericaddon.recipes.InfusionRecipe;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeType;
 import org.openzen.zencode.java.*;
 
 /**
- * By default, CraftTweaker creates a {@link com.blamejared.crafttweaker.impl.managers.RecipeManagerWrapper}
- * object per registered {@link IRecipeType}
+ * By default, CraftTweaker creates a {@link com.blamejared.crafttweaker.api.recipe.manager.RecipeManagerWrapper}
+ * object per registered {@link RecipeType}
  * unless a mod adds a custom implementation of {@link IRecipeManager}.
  * <p>
  * In that case, the implementation will be used.
@@ -31,15 +35,15 @@ import org.openzen.zencode.java.*;
  * If you don't need any special logic for recipe removal, you could leave them be and only implement recipe additions.
  * <p>
  * In Script, users will be able to call a manager using {@code <recipetype:YOUR_RECIPE_TYPE_NAME>}
- * In this case, {@code <recipetype:some_generic_addon:infusion>}
+ * In this case, {@code <recipetype:genericaddon:infusion>}
  *
  *
- * @docParam this <recipetype:some_generic_addon:infusion>
+ * @docParam this <recipetype:genericaddon:infusion>
  */
+@Document("mods/genericaddon/InfusionRecipeManager")
+@ZenCodeType.Name("mods.genericaddon.InfusionRecipeManager")
 @ZenRegister
-@Document("mods/some_generic_addon/InfusionRecipeManager")
-@ZenCodeType.Name("mods.some_generic_addon.InfusionRecipeManager")
-public class InfusionRecipeManager implements IRecipeManager {
+public class InfusionRecipeManager implements IRecipeManager<InfusionRecipe> {
     
     /**
      * We need either a public static Field that hold a reference to this recipe manager
@@ -54,12 +58,7 @@ public class InfusionRecipeManager implements IRecipeManager {
     
     public InfusionRecipeManager() {
     }
-    
-    
-    @Override
-    public IRecipeType<InfusionRecipe> getRecipeType() {
-        return SomeGenericAddon.TYPE_INFUSION;
-    }
+
     
     /**
      * Any added methods should be instance methods,
@@ -77,10 +76,9 @@ public class InfusionRecipeManager implements IRecipeManager {
      */
     @ZenCodeType.Method
     public void addRecipe(String name, IIngredient input, IItemStack output) {
-        //Generally, we don't recommend using your mod's namespace for any added recipe.
-        //This is so that in modpacks faulty recipes won't be reported to the mod authors.
-        //You could use CraftTweaker's namespace instead
-        final ResourceLocation id = new ResourceLocation(SomeGenericAddon.MOD_ID, name);
+        //Your recipes should be using CraftTweaker's namespace, so that anyone reading this can pick up that this recipe
+        //was added by a CraftTweaker scripts.
+        final ResourceLocation id = CraftTweakerConstants.rl(fixRecipeName(name));
         
         //Most CrT types have a "getInternal" method to get a CrT equivalent
         final ItemStack resultItemStack = output.getInternal();
@@ -90,6 +88,16 @@ public class InfusionRecipeManager implements IRecipeManager {
         
         //It's a best practice to always wrap your changes in an IAction.
         //This is done for logging purposes as well as well as allowing some actions to be reverted or only executed once
-        CraftTweakerAPI.apply(new ActionAddRecipe(this, recipe, null));
+        CraftTweakerAPI.apply(new ActionAddRecipe<>(this, recipe, null));
+    }
+
+    /**
+     * Gets the recipe type for the registry to remove from.
+     *
+     * @return IRecipeType of this registry.
+     */
+    @Override
+    public RecipeType<InfusionRecipe> getRecipeType(){
+        return SomeGenericAddon.TYPE_INFUSION.get();
     }
 }
