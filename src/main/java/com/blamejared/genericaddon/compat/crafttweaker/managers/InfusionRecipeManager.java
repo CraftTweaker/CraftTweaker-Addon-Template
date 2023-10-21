@@ -40,8 +40,19 @@ import org.openzen.zencode.java.*;
  *
  * @docParam this <recipetype:genericaddon:infusion>
  */
-@Document("mods/genericaddon/InfusionRecipeManager")
-@ZenCodeType.Name("mods.genericaddon.InfusionRecipeManager")
+
+// All of the javadocs you see here are turned into markdown files for the website. In other words, the CraftTweaker
+// Annotation Processor will pickup files annotated with @Document and generate files for them if it is properly
+// configured. See the build.gradle for more details.
+
+// @docParam Is required to have the AP add an example of what you're adding. This is applicable to both method
+// parameters, as well as to recipetypes on the class level.
+
+// A convention on the docs website requires mods to be capitalised and use PascalCase if possible:
+// GenericAddon is okay as a path, Genericaddon and genericaddon are discouraged.
+
+@Document("mods/GenericAddon/InfusionRecipeManager")
+@ZenCodeType.Name("mods.genericaddon.InfusionRecipeManager") //This must always be prefixed with mods
 @ZenRegister
 public class InfusionRecipeManager implements IRecipeManager<InfusionRecipe> {
     
@@ -87,7 +98,8 @@ public class InfusionRecipeManager implements IRecipeManager<InfusionRecipe> {
         final InfusionRecipe recipe = new InfusionRecipe(id, ingredient, resultItemStack);
         
         //It's a best practice to always wrap your changes in an IAction.
-        //This is done for logging purposes as well as well as allowing some actions to be reverted or only executed once
+        //This is done for logging purposes as well as allowing some actions to be reverted or only executed once
+        //This takes care of recipes being removed when the script adding it is removed or updated.
         CraftTweakerAPI.apply(new ActionAddRecipe<>(this, recipe, null));
     }
 
