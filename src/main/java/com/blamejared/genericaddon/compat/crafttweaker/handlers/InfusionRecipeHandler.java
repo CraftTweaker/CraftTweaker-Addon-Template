@@ -1,5 +1,6 @@
 package com.blamejared.genericaddon.compat.crafttweaker.handlers;
 
+import com.blamejared.crafttweaker.api.CraftTweakerAPI;
 import com.blamejared.crafttweaker.api.ingredient.IIngredient;
 import com.blamejared.crafttweaker.api.item.IItemStack;
 import com.blamejared.crafttweaker.api.recipe.component.BuiltinRecipeComponents;
@@ -52,7 +53,7 @@ public class InfusionRecipeHandler implements IRecipeHandler<InfusionRecipe> {
         return String.format("%s.addRecipe(%s, %s, %s);",
                 manager.getCommandString(),
                 StringUtil.quoteAndEscape(recipe.getId()),
-                ItemStackUtil.getCommandString(recipe.getResultItem(ServerLifecycleHooks.getCurrentServer().registryAccess())),
+                ItemStackUtil.getCommandString(recipe.getResultItem(CraftTweakerAPI.getAccessibleElementsProvider().registryAccess())),
                 IIngredient.fromIngredient(recipe.getInput()).getCommandString()
                 );
     }
@@ -113,7 +114,7 @@ public class InfusionRecipeHandler implements IRecipeHandler<InfusionRecipe> {
         DecomposedRecipeBuilder decomposedRecipe = IDecomposedRecipe.builder();
         decomposedRecipe.with(BuiltinRecipeComponents.Input.INGREDIENTS, IIngredient.fromIngredient(recipe.getInput()));
         decomposedRecipe.with(BuiltinRecipeComponents.Output.ITEMS,
-                IItemStack.of(recipe.getResultItem(ServerLifecycleHooks.getCurrentServer().registryAccess())));
+                IItemStack.of(recipe.getResultItem(CraftTweakerAPI.getAccessibleElementsProvider().registryAccess())));
         //Other components are available in BuiltinRecipeComponents.
         //Should you need to create a new one see ICraftTweakerPlugin#registerRecipeComponents
         //Don't forget to Document those in the Recipe Class javadocs.

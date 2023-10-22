@@ -25,6 +25,6 @@ public class MyStaticIntegrationClass {
         //While this has some usage, if what you're doing should be undoable, do refer to the IActionExample in InfusionRecipeManager.
         //If you need an action for non recipe manipulation, refer to IUndoableAction
         //see ActionSetCompostable for an example.
-        CraftTweakerAPI.getLogger("GenericAddon").info("Printing '%s'", ingredient.getCommandString());
+        CraftTweakerAPI.getLogger("GenericAddon").info("Printing '{}'", ingredient.getCommandString());
     }
 }
