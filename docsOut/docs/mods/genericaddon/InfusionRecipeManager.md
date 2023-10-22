@@ -29,7 +29,7 @@ import mods.genericaddon.InfusionRecipeManager;
 ## Implemented Interfaces
 InfusionRecipeManager implements the following interfaces. That means all methods defined in these interfaces are also available in InfusionRecipeManager
 
-- [IRecipeManager](/vanilla/api/recipe/manager/IRecipeManager)
+- [IRecipeManager](/vanilla/api/recipe/manager/IRecipeManager)&lt;[InfusionRecipe](/mods/GenericAddon/InfusionRecipe)&gt;
 
 ## Methods
 
@@ -56,16 +56,16 @@ Any added methods should be instance methods,
  if the AP was added to the compiler's classpath.
 
 ```zenscript
-// InfusionRecipeManager.addRecipe(name as string, input as IIngredient, output as IItemStack)
+// InfusionRecipeManager.addRecipe(name as string, output as IItemStack, input as IIngredient)
 
-<recipetype:genericaddon:infusion>.addRecipe("my_recipe", <item:minecraft:diamond_pickaxe>, <item:minecraft:diamond> * 16);
+<recipetype:genericaddon:infusion>.addRecipe("my_recipe", <item:minecraft:diamond> * 16, <item:minecraft:diamond_pickaxe>);
 ```
 
 | Parameter |                        Type                        |                         Description                         |
 |-----------|----------------------------------------------------|-------------------------------------------------------------|
 | name      | string                                             | The recipe name, only the resource path (without namespace) |
-| input     | [IIngredient](/vanilla/api/ingredient/IIngredient) | The recipe's input                                          |
 | output    | [IItemStack](/vanilla/api/item/IItemStack)         | The recipe result                                           |
+| input     | [IIngredient](/vanilla/api/ingredient/IIngredient) | The recipe's input                                          |
 
 
 :::

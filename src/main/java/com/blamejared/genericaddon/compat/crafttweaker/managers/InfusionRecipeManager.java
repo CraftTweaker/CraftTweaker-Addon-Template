@@ -1,7 +1,6 @@
 package com.blamejared.genericaddon.compat.crafttweaker.managers;
 
 
-import com.blamejared.crafttweaker.CraftTweakerCommon;
 import com.blamejared.crafttweaker.api.CraftTweakerAPI;
 import com.blamejared.crafttweaker.api.CraftTweakerConstants;
 import com.blamejared.crafttweaker.api.action.recipe.ActionAddRecipe;
@@ -16,7 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeType;
-import org.openzen.zencode.java.*;
+import org.openzen.zencode.java.ZenCodeType;
 
 /**
  * By default, CraftTweaker creates a {@link com.blamejared.crafttweaker.api.recipe.manager.RecipeManagerWrapper}
@@ -79,14 +78,14 @@ public class InfusionRecipeManager implements IRecipeManager<InfusionRecipe> {
      * if the AP was added to the compiler's classpath.
      *
      * @param name   The recipe name, only the resource path (without namespace)
-     * @param input  The recipe's input
      * @param output The recipe result
+     * @param input  The recipe's input
      * @docParam name "my_recipe"
-     * @docParam input <item:minecraft:diamond_pickaxe>
      * @docParam output <item:minecraft:diamond> * 16
+     * @docParam input <item:minecraft:diamond_pickaxe>
      */
     @ZenCodeType.Method
-    public void addRecipe(String name, IIngredient input, IItemStack output) {
+    public void addRecipe(String name, IItemStack output, IIngredient input) {
         //Your recipes should be using CraftTweaker's namespace, so that anyone reading this can pick up that this recipe
         //was added by a CraftTweaker scripts.
         final ResourceLocation id = CraftTweakerConstants.rl(fixRecipeName(name));

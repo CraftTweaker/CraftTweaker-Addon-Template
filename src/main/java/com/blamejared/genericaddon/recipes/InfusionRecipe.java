@@ -83,6 +83,11 @@ public class InfusionRecipe implements Recipe<Container> {
         return SomeGenericAddon.TYPE_INFUSION.get();
     }
 
+    public Ingredient getInput(){
+        //Equivalent to getIngredients().get(0)
+        return input;
+    }
+
     @ParametersAreNonnullByDefault
     public static final class InfusionRecipeSerializer implements RecipeSerializer<InfusionRecipe> {
 

@@ -30,5 +30,6 @@ public class SomeGenericAddon {
     public SomeGenericAddon() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         SERIALIZER_REGISTRY.register(modBus);
+        RECIPE_REGISTRY.register(modBus);
     }
 }

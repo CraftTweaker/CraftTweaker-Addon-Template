@@ -1,10 +1,10 @@
 package com.blamejared.genericaddon.compat.crafttweaker;
 
-import com.blamejared.crafttweaker.api.*;
+import com.blamejared.crafttweaker.api.CraftTweakerAPI;
 import com.blamejared.crafttweaker.api.annotation.ZenRegister;
 import com.blamejared.crafttweaker.api.ingredient.IIngredient;
-import com.blamejared.crafttweaker_annotations.annotations.*;
-import org.openzen.zencode.java.*;
+import com.blamejared.crafttweaker_annotations.annotations.Document;
+import org.openzen.zencode.java.ZenCodeType;
 
 /**
  * A class with static members that allow us to do stuff!

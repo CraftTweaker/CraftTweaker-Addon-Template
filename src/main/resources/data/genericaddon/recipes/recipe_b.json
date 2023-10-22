@@ -1,5 +1,5 @@
 {
-  "type": "some_generic_addon:infusion",
+  "type": "genericaddon:infusion",
   "result": {
     "item": "minecraft:redstone"
   },
